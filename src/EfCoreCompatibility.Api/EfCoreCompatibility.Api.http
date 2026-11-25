@@ -1,0 +1,29 @@
+@EfCoreCompatibility.Api_HostAddress = http://localhost:5080
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/orders
+Accept: application/json
+
+###
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/orders/effective-discount
+Accept: application/json
+
+###
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/orders/effective-discount?orderNumber=ORD-DOES-NOT-EXIST
+Accept: application/json
+
+###
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/diagnostics/sql-server
+Accept: application/json
+
+###
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/diagnostics/generated-sql
+Accept: application/json
+
+###
+
+GET {{EfCoreCompatibility.Api_HostAddress}}/api/diagnostics/compatibility
+Accept: application/json

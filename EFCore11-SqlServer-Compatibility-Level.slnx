@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EfCoreCompatibility.Api/EfCoreCompatibility.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EfCoreCompatibility.UnitTests/EfCoreCompatibility.UnitTests.csproj" />
+    <Project Path="tests/EfCoreCompatibility.IntegrationTests/EfCoreCompatibility.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

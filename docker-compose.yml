@@ -1,0 +1,43 @@
+name: efcore11-sql-compat
+
+services:
+  sqlserver2019:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: efcore11-sqlserver-2019
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-DevOnly_Sql2019!}
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q \"SELECT 1\""
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
+
+  sqlserver2022:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: efcore11-sqlserver-2022
+    profiles: ["comparison"]
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-DevOnly_Sql2019!}
+    ports:
+      - "14332:1433"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q \"SELECT 1\""
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
